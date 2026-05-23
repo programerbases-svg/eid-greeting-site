@@ -15,40 +15,24 @@
 
   <header class="main-header">
     <p class="bismillah">بسم الله الرحمن الرحيم</p>
-    <h1 class="main-title">عيد الأضحى المبارك</h1>
-    <p class="sub-title">أدخل كودك الفريد لعرض تهنئتك</p>
+    <h1 class="main-title">بمناسبة العيد الأضحى المبارك  </h1>
+    <p class="sub-title">أقدم لكم هذا العمل المتواضع لنتبادل مع بعض تهاني هذا العيد المبارك</p>
   </header>
 
-  <!-- <section id="login-section">
-    <div class="ornament">
-      <span>أدخل الكود</span>
-    </div>
-
-    <input id="code-input" type="text" placeholder="مثال: GUEST01" />
-
-    <p id="error-msg" class="hidden">
-      ⚠️ الكود غير صحيح، يرجى المحاولة مجدداً
-    </p>
-
-    <button onclick="checkCode()" class="btn-submit">
-      ✨ عرض تهنئتي
-    </button>
-  </section> -->
-
-
+ 
 <section id="login-section">
     <div style="display: flex; gap: 10px; margin-bottom: 24px;">
-      <button id="tab-public" onclick="switchTab('public')" class="btn-submit" style="flex: 1; margin: 0; font-size: 1rem; padding: 12px;">✨ دخول عام (بالاسم)</button>
-      <button id="tab-private" onclick="switchTab('private')" class="btn-submit" style="flex: 1; margin: 0; font-size: 1rem; padding: 12px; background: rgba(255,255,255,0.1); color: #fdf6e3; border: 1px solid rgba(201,162,39,0.3);">🔒 خاص (بالأقارب)</button>
+      <button id="tab-public" onclick="switchTab('public')" class="btn-submit" style="flex: 1; margin: 0; font-size: 1rem; padding: 12px;">✨تهنئة المجتمع (العامة) </button>
+      <button id="tab-private" onclick="switchTab('private')" class="btn-submit" style="flex: 1; margin: 0; font-size: 1rem; padding: 12px; background: rgba(255,255,255,0.1); color: #fdf6e3; border: 1px solid rgba(201,162,39,0.3);"> تهنئة خاصة(الأقارب)🫂👥</button>
     </div>
 
     <div id="public-form">
       <div class="ornament"><span>اكتب اسمك الكريم</span></div>
-      <input id="public-name-input" type="text" placeholder="مثال: محمد نافي" />
+      <input id="public-name-input" type="text" placeholder="مثال: الإسم  أو الإسم واللقب" />
     </div>
 
     <div id="private-form" class="hidden" style="display: none;">
-      <div class="ornament"><span>أدخل كود القرابة السرّي</span></div>
+      <div class="ornament"><span>*أدخل كود القرابة السرّي*</span></div>
       <input id="private-code-input" type="text" placeholder="مثال: GUEST01" style="text-transform: uppercase;" />
 
       <div class="ornament"><span>حدد صلة قرابتك بمحمد</span></div>

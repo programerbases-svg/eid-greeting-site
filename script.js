@@ -8,10 +8,38 @@
        🗂️ DATABASE — قاعدة بيانات الأقارب والأكواد الخاصة
     ============================================================ */
     const guests = {
-      "H2M7N5R3": { name: "نوح" },
-      "2005": { name: "فتيحة" },
-      "GUEST03": { name: "أحمد" },
-      "GUEST04": { name: "فاطمة" }
+    
+  "A1B2C3D4": { "name": "محمد" },
+  "E5F6G7H8": { "name": "أحمد" },
+  "I9J0K1L2": { "name": "فاطمة" },
+  "M3N4O5P6": { "name": "علي" },
+  "Q7R8S9T0": { "name": "عائشة" },
+  "U1V2W3X4": { "name": "عمر" },
+  "Y5Z6A7B8": { "name": "زينب" },
+  "C9D0E1F2": { "name": "يوسف" },
+  "G3H4I5J6": { "name": "مريم" },
+  "K7L8M9N0": { "name": "خالد" },
+  "O1P2Q3R4": { "name": "سارة" },
+  "S5T6U7V8": { "name": "عبد الله" },
+  "W9X0Y1Z2": { "name": "نور" },
+  "A3B4C5D6": { "name": "حمزة" },
+  "E7F8G9H0": { "name": "ليان" },
+  "I1J2K3L4": { "name": "إبراهيم" },
+  "M5N6O7P8": { "name": "رنا" },
+  "Q9R0S1T2": { "name": "حسن" },
+  "U3V4W5X6": { "name": "ريم" },
+  "Y7Z8A9B0": { "name": "مصطفى" },
+  "C1D2E3F4": { "name": "هنا" },
+  "G5H6I7J8": { "name": "طارق" },
+  "K9L0M1N2": { "name": "جنى" },
+  "O3P4Q5R6": { "name": "زياد" },
+  "S7T8U9V0": { "name": "آية" },
+  "W1X2Y3Z4": { "name": "كريم" },
+  "A5B6C7D8": { "name": "ندى" },
+  "E9F0G1H2": { "name": "سلطان" },
+  "I3J4K5L6": { "name": "حلا" },
+  "M7N8O9P0": { "name": "ياسين" }
+
     };
 
     /* ============================================================
@@ -124,61 +152,6 @@
       const hints = { kaaba: "🕋 خلفية الكعبة المشرفة", sheep: "🐑 خلفية خروف العيد", islamic: "☪️ خلفية إسلامية فاخرة" };
       document.getElementById("selection-hint").textContent = "✅ اخترت: " + hints[bg];
     }
-
-    // /* 4. دالة الرد عبر الواتساب (تمرير تلقائي للنص والرمز التعبيري) */
-    // function replyViaWhatsApp() {
-    //   if (!selectedBackground) { 
-    //     alert("⚠️ يرجى اختيار خلفية أولاً!"); 
-    //     return; 
-    //   }
-      
-    //   const icons = { kaaba: "🕋", sheep: "🐑", islamic: "☪️" };
-    //   // بناء نص الجواب الموجه لك
-    //   const replyText = "مرحباً محمد نافي، أنا " + currentGuestName + " قمت باختيار " + icons[selectedBackground] + " للرد على تهنئتك الجميلة! كل عام وأنت بخير ونجاح تنمية برمجية مستمرة مبرمجنا الغالي 🎉";
-    //   const encodedText = encodeURIComponent(replyText);
-      
-    //   const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-    //   let finalUrl = "";
-
-    //   if (isMobile) {
-    //     finalUrl = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodedText;
-    //   } else {
-    //     finalUrl = "https://web.whatsapp.com/send?phone=" + WHATSAPP_NUMBER + "&text=" + encodedText;
-    //   }
-      
-    //   window.open(finalUrl, "_blank");
-    // }
-
-    // /* 5. دالة الرد عبر الماسنجر (النسخة المستقرة مع نسخ نص الرد للحافظة تلقائياً) */
-    // function replyViaMessenger() {
-    //   if (!selectedBackground) { 
-    //     alert("⚠️ يرجى اختيار خلفية أولاً!"); 
-    //     return; 
-    //   }
-      
-    //   const icons = { kaaba: "🕋", sheep: "🐑", islamic: "☪️" };
-    //   const replyText = "مرحباً محمد نافي، أنا " + currentGuestName + " قمت باختيار " + icons[selectedBackground] + " للرد على تهنئتك الجميلة! كل عام وأنت بخير ونجاح تنمية برمجية مستمرة مبرمجنا الغالي 🎉";
-      
-    //   // نسخ نص الرد تلقائياً في حافظة هاتف الزائر
-    //   navigator.clipboard.writeText(replyText)
-    //     .then(() => console.log("تم نسخ نص الرد بنجاح!"))
-    //     .catch(err => console.error("فشل النسخ: ", err));
-      
-    //   // فتح رابط محادثتك المباشر المستقر تماماً
-    //   window.open(MESSENGER_LINK, "_blank");
-    // }
-
-    // // تفعيل زر الدخول عند الضغط على مفتاح Enter تسهيلاً للمستخدم
-    // document.addEventListener("keydown", function(e) {
-    //   if (e.key === "Enter") {
-    //     // فحص أي واجهة مفتوحة لتفادي الأخطاء وفحص الحقول الشغالة
-    //     if (document.getElementById("login-section").style.display !== "none") {
-    //       processLogin();
-    //     }
-    //   }
-    // });
-
-
 
     /* 4. دالة الرد عبر الواتساب (تعديل: إرسال اسم الشخص النقي بدون صلة القرابة) */
     function replyViaWhatsApp() {

@@ -1,0 +1,383 @@
+/* أضف هذا في أول سطر داخل ملف style.css */
+html {
+  scroll-behavior: smooth;
+}
+
+/* تحديد علامة النجمة لاستهداف كل العناصر في الصفحة لتصفير الهوامش (تُنطق: أستريسك) */
+* {
+  /* جعل حساب أبعاد العنصر يتضمن الحدود والحشوة الداخلية (تُنطق: بوكس سايزنج: بوردر بوكس) */
+  box-sizing: border-box;
+  /* إلغاء الهوامش الخارجية التلقائية للعناصر (تُنطق: مارجن) */
+  margin: 0;
+  /* إلغاء الحشوة الداخلية التلقائية للعناصر (تُنطق: بادينج) */
+  padding: 0;
+}
+
+/* تنسيق جسم الصفحة بالكامل (تُنطق: بادي) */
+body {
+  /* تحديد نوع الخط الأساسي للنصوص (تُنطق: فونت فاميلي) */
+  font-family: 'Noto Naskh Arabic', serif;
+  /* تحديد لون الخلفية الزيتي الداكن (تُنطق: باك جراوند كولور) */
+  background-color: #07351f;
+  /* صنع تدرج دائرى للألوان يبدأ من الفاتح في الأعلى للداكن (تُنطق: باك جراوند إيمدج: ريديال جرادينت) */
+  background-image: radial-gradient(ellipse at top, #0b4d2e 0%, #07351f 60%);
+  /* جعل الطول الأدنى للصفحة يغطي كامل شاشة العرض (تُنطق: مين هايت: 100 في إتش) */
+  min-height: 100vh;
+  /* لون الخط الأساسي لجميع النصوص وهو الكريمي الفاتح (تُنطق: كولور) */
+  color: #fdf6e3;
+  /* تحويل الجسم لنظام العرض المرن لترتيب العناصر (تُنطق: ديسبلاي: فليكس) */
+  display: flex;
+  /* ترتيب العناصر تحت بعضها البعض عمودياً (تُنطق: فليكس ديريكشن: كولوم) */
+  flex-direction: column;
+  /* محاذاة العناصر وتوسيطها أفقياً في المنتصف (تُنطق: ألاين آيتمز: سينتر) */
+  align-items: center;
+  /* بدء توزيع العناصر من بداية الصفحة عمودياً (تُنطق: جاستيفاي كونتنت: ستارت) */
+  justify-content: start;
+  /* حشوة داخلية لحماية المحتوى من الالتصاق بالحواف (تُنطق: بادينج) */
+  padding: 40px 16px;
+}
+
+/* تنسيق رأس الصفحة (تُنطق: دوت مين هيدر) */
+.main-header {
+  /* محاذاة كل نصوص الرأس في المنتصف (تُنطق: تيكست ألاين: سينتر) */
+  text-align: center;
+  /* هامش سفلي لدفع العناصر التي تحته لأسفل (تُنطق: مارجن بوتوم) */
+  margin-bottom: 40px;
+}
+
+/* تنسيق نص البسملة (تُنطق: دوت بسم الله) */
+.bismillah {
+  /* تلوين الخط بالذهبي الفاتح (تُنطق: كولور) */
+  color: #f5d98b;
+  /* تعيين خط أميري للبسملة (تُنطق: فونت فاميلي) */
+  font-family: 'Amiri', serif;
+  /* حجم خط البسملة (تُنطق: فونت سايز) */
+  font-size: 1.25rem;
+  /* إعطاء مسافة جمالية بين الحروف (تُنطق: ليتر سبيسينج) */
+  letter-spacing: 2px;
+  /* هامش سفلي بسيط (تُنطق: مارجن بوتوم) */
+  margin-bottom: 8px;
+}
+
+/* تنسيق العنوان الكبير (تُنطق: دوت main-title) */
+.main-title {
+  font-family: 'Amiri', serif;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #c9a227;
+  /* ضبط الارتفاع المخصص للسطر لمنع التداخل (تُنطق: لاين هايت) */
+  line-height: 1.2;
+}
+
+/* تنسيق العنوان الفرعي (تُنطق: دوت sub-title) */
+.sub-title {
+  /* تلوين الخط بالذهبي مع شفافية 70% (تُنطق: كولور: آر جي بي إيه) */
+  color: rgba(201, 162, 39, 0.7);
+  /* هامش علوي لإبعاده عن العنوان الأساسي (تُنطق: مارجن توب) */
+  margin-top: 12px;
+  font-size: 1rem;
+}
+
+/* تنسيق قسم صندوق الكود عبر معرفه الفريد (تُنطق: هاش لوجين سيكشن) */
+#login-section {
+  width: 100%;
+  /* تحديد العرض الأقصى لكي لا يتمدد بشكل قبيح على الحاسوب (تُنطق: ماكس ويدث) */
+  max-width: 448px;
+  /* لون خلفية زيتي شفاف (تُنطق: باك جراوند كولور) */
+  background-color: rgba(11, 77, 46, 0.6);
+  /* إطار رفيع جداً بلون ذهبي شفاف (تُنطق: بوردر) */
+  border: 1px solid rgba(201, 162, 39, 0.2);
+  /* تدوير زوايا الصندوق لجعلها دائرية وناعمة (تُنطق: بوردر ريديوس) */
+  border-radius: 16px;
+  padding: 32px;
+  /* إضافة ظل أسود خلف الصندوق ليعطيه عمقاً واقعياً (تُنطق: بوكس شادو) */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* تنسيق حقل الإدخال الموجود داخل قسم تسجيل الدخول (تُنطق: هاش لوجين سيكشن إنبوت) */
+#login-section input {
+  width: 100%;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-family: 'Amiri', serif;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  color: #fdf6e3;
+  /* إضافة تأثير حركة ناعمة وسلسة عند تغير لون الإطار (تُنطق: ترانزيشن) */
+  transition: border-color 0.3s;
+}
+
+/* تأثير يحدث لحقل الإدخال عندما يضغط عليه المستخدم للكتابة (تُنطق: هاش لوجين سيكشن إنبوت فوكس) */
+#login-section input:focus {
+  /* إزالة الإطار الأزرق الافتراضي للمتصفح (تُنطق: آوت لاين: نان) */
+  outline: none;
+  /* تحويل لون الإطار للذهبي الصافي عند التركيز والكتابة (تُنطق: بوردر كولور) */
+  border-color: #c9a227;
+}
+
+/* تنسيق زر الإرسال وعرض التهنئة (تُنطق: دوت بي تي إن سبميت) */
+.btn-submit {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #07351f;
+  /* إلغاء حدود الزر الافتراضية (تُنطق: بوردر: نان) */
+  border: none;
+  /* تحويل شكل الفأرة ليد عند تمريرها فوق الزر (تُنطق: كيرسر: بوينتر) */
+  cursor: pointer;
+  /* عمل خلفية متدرجة للزر بتأثير ذهبي ملكي مائل (تُنطق: لينير جرادينت) */
+  background: linear-gradient(135deg, #f5d98b, #c9a227);
+  /* تجهيز الزر لتأثير التكبير السلس عند اللمس (تُنطق: ترانزيشن: ترانسفورم) */
+  transition: transform 0.2s;
+}
+
+/* تأثير عند تمرير الفأرة فوق زر الإرسال (تُنطق: دوت بي تي إن سبميت هوفر) */
+.btn-submit:hover {
+  /* تكبير حجم الزر بنسبة 3% ليعطي إيحاء تفاعلي حركي (تُنطق: ترانسفورم: سكيل) */
+  transform: scale(1.03);
+}
+
+/* تنسيق الفواصل الزخرفية للخطوط (تُنطق: دوت أورنامينت) */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  color: #c9a227;
+}
+
+.ornament span {
+  padding: 0 10px;
+  font-size: 0.85rem;
+}
+
+/* تنسيق قسم عرض التهنئة بالكامل (تُنطق: هاش جريتينج سيكشن) */
+#greeting-section {
+  display: none; /* مخفي تماماً في البداية ولا يظهر إلا بنجاح الكود في السكريبت */
+  width: 100%;
+  max-width: 672px;
+  margin-top: 40px;
+}
+
+/* تنسيق بطاقة التهنئة الداخلية (تُنطق: دوت جريتينج كارد) */
+.greeting-card {
+  background: linear-gradient(135deg, #0f5c36 0%, #0b4d2e 50%, #073520 100%);
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  border-radius: 24px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.moon-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+/* تنسيق اسم الضيف المكتوب (تُنطق: هاش غيست نيم) */
+#guest-name {
+  font-family: 'Amiri', serif;
+  font-size: 2.5rem;
+  color: #f5d98b;
+  margin-bottom: 4px;
+}
+
+/* تنسيق نص رسالة التهنئة الموجهة للضيف (تُنطق: هاش غيست ميسيج) */
+#guest-message {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: rgba(253, 246, 227, 0.9);
+}
+
+.taqabal-allah {
+  color: rgba(201, 162, 39, 0.6);
+  font-size: 0.875rem;
+  margin-top: 16px;
+  font-family: 'Amiri', serif;
+}
+
+/* تنسيق حاوية الرد واختيار الخلفيات (تُنطق: هاش ريبلاي سيكشن) */
+#reply-section {
+  margin-top: 32px;
+  background-color: rgba(11, 77, 46, 0.5);
+  border: 1px solid rgba(201, 162, 39, 0.2);
+  border-radius: 24px;
+  padding: 32px;
+}
+
+.reply-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* إنشاء شبكة توزيع بطاقات الخلفيات كأعمدة متساوية (تُنطق: دوت جريد كونتينر) */
+.grid-container {
+  /* تفعيل نظام الشبكة الحديث (تُنطق: ديسبلاي: جريد) */
+  display: grid;
+  /* تقسيم المساحة إلى 3 أعمدة متساوية الحجم تماماً (تُنطق: جريد تيمبلت كولومز: ريبيت 3، 1 إف آر) */
+  grid-template-columns: repeat(3, 1fr);
+  /* وضع مسافات بين البطاقات في الشبكة (تُنطق: جاب) */
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* تنسيق بطاقة الخلفية المنفردة (تُنطق: دوت بي جي كارد) */
+.bg-card {
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  /* إخفاء أي محتوى داخلي يتجاوز حدود وتدوير البطاقة الحاضنة (تُنطق: أوفر فلو: هيدن) */
+  overflow: hidden;
+  /* تمكين التموضع النسبي لعناصر الأبناء مثل شارة الصح (تُنطق: بوزيشن: ريلاتيف) */
+  position: relative;
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.bg-card:hover {
+  /* رفع البطاقة قليلاً لأعلى بمقدار 5 بكسل عند حرك الفأرة كنوع من التفاعل (تُنطق: ترانسفورم: ترافزليت واي) */
+  transform: translateY(-5px);
+}
+
+/* كلاس مخصص يضاف للبطاقة بواسطة الجافا سكريبت عند ضغط الصديق عليها واختيارها (تُنطق: دوت بي جي كارد دوت سيلكتد) */
+.bg-card.selected {
+  /* تحويل حدود البطاقة المختارة للون الذهبي الفاتح فوراً لتمييزها (تُنطق: بوردر كولور) */
+  border-color: #f5d98b;
+  /* وضع توهج محيطي دافئ وخفيف حول البطاقة (تُنطق: بوكس شادو) */
+  box-shadow: 0 0 0 3px rgba(245, 217, 139, 0.35);
+}
+
+/* تنسيق شارة علامة الصح المخفية (تُنطق: دوت تشيك بادج) */
+.check-badge {
+  /* تمكين التموضع المطلق الحر لوضع العلامة في زاوية معينة (تُنطق: بوزيشن: أبسولوت) */
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 28px;
+  height: 28px;
+  background: #f5d98b;
+  border-radius: 50%;
+  display: none; /* مخفية، وتظهر فقط عندما تحصل البطاقة على كلاس الاختيار */
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: #07351f;
+  font-weight: bold;
+  /* رفع طبقة الشارة فوق الألوان لضمان ظهورها بالمقدمة (تُنطق: زد إندكس) */
+  z-index: 10;
+}
+
+/* إظهار علامة الصح عبر دمج الخصائص للبطاقة المختارة (تُنطق: دوت بي جي كارد دوت سيلكتد دوت تشيك بادج) */
+.bg-card.selected .check-badge {
+  display: flex;
+}
+
+/* إعدادات مساحة الرموز التعبيرية للخلفيات (تُنطق: دوت بريفيو كابّا) */
+.preview-kaaba, .preview-sheep, .preview-islamic {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 45px;
+}
+
+/* تدرج ليلي مخصص لخلفية الكعبة (تُنطق: دوت بريفيو كابّا) */
+.preview-kaaba { background: linear-gradient(to bottom, #1a1a2e, #0f3460); }
+/* طباعة وسم إيموجي الكعبة المشرفة برمجياً بالـ CSS (تُنطق: دوت بريفيو كابّا بي فور / آفتر) */
+.preview-kaaba::after { content: '🕋'; }
+
+/* تدرج طبيعي مخصص لخلفية الخروف (تُنطق: دوت بريفيو شيب) */
+.preview-sheep { background: linear-gradient(to bottom, #87ceeb, #5d8a3c); }
+.preview-sheep::after { content: '🐑'; }
+
+/* تدرج دائري فاخر مخصص للخلفية الإسلامية (تُنطق: دوت بريفيو إسلاميك) */
+.preview-islamic { background: radial-gradient(circle, #2d1b00, #0d0600); }
+.preview-islamic::after { content: '☪️'; }
+
+.card-footer {
+  background-color: rgba(7, 53, 31, 0.8);
+  padding: 8px 4px;
+  text-align: center;
+}
+
+.card-footer p {
+  color: #f5d98b;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+#selection-hint {
+  text-align: center;
+  color: rgba(201, 162, 39, 0.6);
+  font-size: 0.875rem;
+  margin-bottom: 24px;
+}
+
+/* تنسيق مجمع للأزرار لحشدها جنباً إلى جنب (تُنطق: دوت بوتونز فليكس) */
+.buttons-flex {
+  display: flex;
+  gap: 16px;
+}
+
+/* تنسيق مشترك بين زري الواتساب والماسنجر (تُنطق: دوت بي تي إن واتساب) */
+.btn-whatsapp, .btn-messenger {
+  /* جعل الأزرار تتوزع بالتساوي داخل المساحة المرنة (تُنطق: فليكس: 1) */
+  flex: 1;
+  padding: 20px;
+  border-radius: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* الألوان التدرجية والظلال للواتساب الأخضر (تُنطق: دوت بي تي إن واتساب) */
+.btn-whatsapp {
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+}
+
+/* الألوان التدرجية والظلال للماسنجر الأزرق والأرجواني (تُنطق: دوت بي تي إن ميسينجر) */
+.btn-messenger {
+  background: linear-gradient(135deg, #0099ff 0%, #a033ff 100%);
+  box-shadow: 0 4px 20px rgba(0, 153, 255, 0.35);
+}
+
+/* تأثير حركة الرفع الخفيف للأزرار عند التمرير (تُنطق: هوفر) */
+.btn-whatsapp:hover, .btn-messenger:hover {
+  transform: translateY(-3px);
+}
+
+.main-footer {
+  margin-top: 56px;
+  text-align: center;
+  color: rgba(201, 162, 39, 0.3);
+  font-size: 0.75rem;
+  font-family: 'Amiri', serif;
+  padding-bottom: 24px;
+}
+
+/* شاشة مخصصة للهواتف التي يقل عرض شاشاتها عن 600 بكسل لتحسين المظهر (تُنطق: ميديا كوِيري مكس ويدث) */
+@media (max-width: 600px) {
+  .buttons-flex {
+    /* جعل الأزرار تترتب عمودياً فوق بعضها على الهاتف لراحة يد المستخدم (تُنطق: فليكس ديريكشن) */
+    flex-direction: column;
+  }
+  .main-title {
+    /* تصغير كود حجم خط العنوان ليتناسب مع الهواتف الصغيرة (تُنطق: فونت سايز) */
+    font-size: 2.2rem;
+  }
+}
+
+/* كلاس مساعد وثابت مخصص لإخفاء العناصر برمجياً من الشاشة (تُنطق: دوت هيدن) */
+.hidden {
+  /* إلغاء تمثيل العنصر في واجهة الموقع تماماً (تُنطق: ديسبلاي: نان) */
+  display: none;
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تهنئة عيد الأضحى المبارك</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="main-header">
+    <p class="bismillah">بسم الله الرحمن الرحيم</p>
+    <h1 class="main-title">عيد الأضحى المبارك</h1>
+    <p class="sub-title">أدخل كودك الفريد لعرض تهنئتك</p>
+  </header>
+
+  <!-- <section id="login-section">
+    <div class="ornament">
+      <span>أدخل الكود</span>
+    </div>
+
+    <input id="code-input" type="text" placeholder="مثال: GUEST01" />
+
+    <p id="error-msg" class="hidden">
+      ⚠️ الكود غير صحيح، يرجى المحاولة مجدداً
+    </p>
+
+    <button onclick="checkCode()" class="btn-submit">
+      ✨ عرض تهنئتي
+    </button>
+  </section> -->
+
+
+<section id="login-section">
+    <div style="display: flex; gap: 10px; margin-bottom: 24px;">
+      <button id="tab-public" onclick="switchTab('public')" class="btn-submit" style="flex: 1; margin: 0; font-size: 1rem; padding: 12px;">✨ دخول عام (بالاسم)</button>
+      <button id="tab-private" onclick="switchTab('private')" class="btn-submit" style="flex: 1; margin: 0; font-size: 1rem; padding: 12px; background: rgba(255,255,255,0.1); color: #fdf6e3; border: 1px solid rgba(201,162,39,0.3);">🔒 خاص (بالأقارب)</button>
+    </div>
+
+    <div id="public-form">
+      <div class="ornament"><span>اكتب اسمك الكريم</span></div>
+      <input id="public-name-input" type="text" placeholder="مثال: محمد نافي" />
+    </div>
+
+    <div id="private-form" class="hidden" style="display: none;">
+      <div class="ornament"><span>أدخل كود القرابة السرّي</span></div>
+      <input id="private-code-input" type="text" placeholder="مثال: GUEST01" style="text-transform: uppercase;" />
+
+      <div class="ornament"><span>حدد صلة قرابتك بمحمد</span></div>
+      <select id="relation-select" style="width: 100%; border-radius: 12px; padding: 16px; font-size: 1.1rem; background: #0b4d2e; border: 1px solid rgba(201,162,39,0.4); color: #fdf6e3; margin-bottom: 16px; font-family: 'Noto Naskh Arabic', serif;">
+        <option value="" disabled selected>اختر صلة القرابة...</option>
+        <optgroup label="العائلة المقربة">
+          <option value="أمي الغالية">أمي</option>
+          <option value="أبي الغالي">أبي</option>
+          <option value="أخي">أخي</option>
+          <option value="أختي">أختي</option>
+        </optgroup>
+        <optgroup label="الأقارب">
+          <option value="ابن أخي">ابن أخي</option>
+          <option value="ابنة أخي">ابنة أخي</option>
+          <option value="ابن أختي">ابن أختي</option>
+          <option value="ابنة أختي">ابنة أختي</option>
+          <option value="عمي الكريم">عمي</option>
+          <option value="عمتي الكريمة">عمتي</option>
+          <option value="خالي الكريم">خالي</option>
+          <option value="خالتي الكريمة">خالتي</option>
+        </optgroup>
+        <optgroup label="الأصدقاء والزملاء">
+          <option value="صديقي العزيز">صديقي</option>
+          <option value="زميلي المحترم">زميلي</option>
+          <option value="خليل روحي">خليلي</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <p id="error-msg" style="color: #ff4d4d; text-align: center; font-size: 0.9rem; margin-bottom: 16px; display: none;">
+      ⚠️ يرجى ملء الحقول المطلوبة بشكل صحيح
+    </p>
+
+    <button onclick="processLogin()" class="btn-submit">
+      🚀 دخول وعرض التهنئة
+    </button>
+  </section>
+  <section id="greeting-section">
+
+    <div class="greeting-card">
+      <div class="moon-icon">🌙</div>
+      <h2 id="guest-name">يا ضيفنا الكريم</h2>
+      <div class="ornament">
+        <span>✦</span>
+      </div>
+      <p id="guest-message">كل عام وأنتم بخير</p>
+      <p class="taqabal-allah">تقبّل الله منا ومنكم صالح الأعمال</p>
+    </div>
+
+    <div id="reply-section">
+      <div class="ornament">
+        <span class="reply-title">اختر خلفية لترد بها على محمد بمناسبة عيد الأضحى</span>
+      </div>
+
+      <div class="grid-container">
+
+        <div class="bg-card" id="card-kaaba" onclick="selectBackground('kaaba')">
+          <div class="check-badge">✓</div>
+          <div class="preview-kaaba"></div>
+          <div class="card-footer">
+            <p>خلفية الكعبة<br/>المشرفة</p>
+          </div>
+        </div>
+
+        <div class="bg-card" id="card-sheep" onclick="selectBackground('sheep')">
+          <div class="check-badge">✓</div>
+          <div class="preview-sheep"></div>
+          <div class="card-footer">
+            <p>خلفية<br/>خروف العيد</p>
+          </div>
+        </div>
+
+        <div class="bg-card" id="card-islamic" onclick="selectBackground('islamic')">
+          <div class="check-badge">✓</div>
+          <div class="preview-islamic"></div>
+          <div class="card-footer">
+            <p>خلفية إسلامية<br/>فاخرة</p>
+          </div>
+        </div>
+
+      </div>
+
+      <p id="selection-hint">
+        👆 اختر خلفية أولاً ثم اضغط على أحد الزرين أدناه
+      </p>
+
+      <div class="buttons-flex">
+        <button onclick="replyViaWhatsApp()" class="btn-whatsapp">
+          رد عبر واتساب 🟢
+        </button>
+
+        <button onclick="replyViaMessenger()" class="btn-messenger">
+          رد عبر فيسبوك ماسنجر 🔵
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="main-footer">
+    كل عام وأنتم بخير • عيد أضحى مبارك ١٤٤٦
+  </footer>
+
+  <script src="script.js"></script>
+  <button onclick="history.back()" class="btn-submit" style="background: rgba(255,255,255,0.1); color: #fdf6e3; border: 1px solid rgba(201,162,39,0.3); margin-bottom: 16px;">
+  ⬅️ العودة للصفحةالرئسية
+</button>
+</body>
+</html>

@@ -154,7 +154,6 @@ function processLogin() {
   greetingSection.scrollIntoView({ behavior: "smooth", block: "start" });
   history.pushState({ page: "greeting" }, "");
 
-  // استدعاء دالة تناثر أوراق الحفل فور الدخول
   createConfetti(); 
 }
 
@@ -223,7 +222,7 @@ function replyViaMessenger() {
   window.open(MESSENGER_LINK, "_blank");
 }
 
-/* 6. دالة تناثر أوراق الحفل (Confetti) المصححة والنقية */
+/* 6. دالة تناثر أوراق الحفل (Confetti) */
 function createConfetti() {
   const confettiCount = 100;
   const confettiColors = ['#f5d98b', '#c9a227', '#fdf6e3', '#ebdcb9'];
@@ -253,7 +252,7 @@ function createConfetti() {
   }
 }
 
-/* 7. دالة التحكم الموحدة والأكيدة في تشغيل وإيقاف الصوت بالزر الجديد */
+/* 7. دالة التحكم الموحدة لتشغيل وإيقاف الصوت بسلاسة وثقة */
 function toggleAudio() {
   const audio = document.getElementById("eid-audio");
   const icon = document.getElementById("audio-icon");
@@ -268,7 +267,7 @@ function toggleAudio() {
         if (text) text.textContent = "إيقاف التكبيرات";
       })
       .catch(err => {
-        console.log("خطأ أو قيود في تشغيل الصوت التلقائي:", err);
+        console.log("المتصفح يمنع تشغيل السيرفر الخارجي تلقائياً:", err);
       });
   } else {
     audio.pause();
@@ -277,7 +276,7 @@ function toggleAudio() {
   }
 }
 
-/* 8. دالة العداد التنازلي التلقائي لأيام العيد 2026 الحي */
+/* 8. دالة العداد التنازلي التلقائي الحي لعام 2026 */
 function initEidCountdown() {
   const eidStartDate = new Date("May 27, 2026 00:00:00").getTime(); 
   const eidEndDate = new Date("May 30, 2026 18:00:00").getTime(); 
@@ -333,12 +332,7 @@ window.addEventListener("popstate", function(event) {
   if(document.getElementById("private-code-input")) document.getElementById("private-code-input").value = "";
 });
 
-/* 10. تشغيل العداد وربط حدث ضغط الزر النظيف فور تحميل المستند */
+/* 10. تشغيل العداد عند تحميل الصفحة (وإزالة تعارض الأزرار) */
 document.addEventListener("DOMContentLoaded", () => {
   initEidCountdown();
-
-  const playButton = document.getElementById("play-audio-btn");
-  if (playButton) {
-    playButton.addEventListener("click", toggleAudio);
-  }
 });

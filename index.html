@@ -1,4 +1,161 @@
+
+
 <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تهنئة عيد الأضحى المبارك</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+<body>
+
+  <header class="main-header">
+    <p class="bismillah">بسم الله الرحمن الرحيم</p>
+    <h1 class="main-title">بمناسبة عيد الأضحى المبارك</h1>
+    <p class="sub-title">أقدم لكم هذا العمل المتواضع لنتبادل مع بعضنا تهاني العيد المبارك</p>
+  </header>
+
+  <section id="login-section">
+    <div class="tabs-container">
+      <button id="tab-public" onclick="switchTab('public')" class="btn-tab active-tab">✨ تهنئة العامة (للمجتمع)</button>
+      <button id="tab-private" onclick="switchTab('private')" class="btn-tab">🫂 تهنئة خاصة (للأقارب والأصدقاء)</button>
+    </div>
+
+    <div id="public-form">
+      <div class="ornament"><span>اكتب اسمك الكريم</span></div>
+      <input id="public-name-input" type="text" placeholder="_______________" />
+    </div>
+
+    <div id="private-form" class="hidden">
+      <div class="ornament"><span>* أدخل كود القرابة السرّي *</span></div>
+      <input id="private-code-input" type="text" placeholder="*********" style="text-transform: uppercase;" />
+
+      <div class="ornament"><span>حدد صلة القرابة</span></div>
+      <select id="relation-select">
+        <option value="" disabled selected>اختر صفة صلتك بمحمد ...</option>
+        <optgroup label="العائلة المقربة">
+          <option value="الأم الغالية">الأم</option>
+          <option value="الأب الغالي">الأب</option>
+          <option value="الأخ العزيز">الأخ</option>
+          <option value="الأخت العزيزة">الأخت</option>
+        </optgroup>
+        <optgroup label="الأقارب والأرحام">
+          <option value="ابن الأخ">ابن الأخ</option>
+          <option value="ابنة الأخ">ابنة الأخ</option>
+          <option value="ابن الأخت">ابن الأخت</option>
+          <option value="ابنة الأخت">ابنة الأخت</option>
+          <option value="العم الكريم">العم</option>
+          <option value="العمة الكريمة">العمة</option>
+          <option value="الخال الكريم">الخال</option>
+          <option value="الخالتة الكريمة">الخالة</option>
+        </optgroup>
+        <optgroup label="الأصدقاء والأحبة">
+          <option value="الصديق الوفي">الصديق</option>
+          <option value="الزميل المحترم">الزميل</option>
+          <option value="خليل الروح">الخليل</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <p id="error-msg">⚠️ يرجى ملء الحقول المطلوبة بشكل صحيح</p>
+
+    <button onclick="processLogin()" class="btn-submit">
+      🚀 دخول وعرض التهنئة الفاخرة
+    </button>
+  </section>
+
+  <section id="greeting-section">
+    <div class="greeting-card-glow-wrapper">
+      <div class="greeting-card">
+        <div class="moon-icon">🕌</div>
+        <h2 id="guest-name">يا ضيفنا الكريم</h2>
+        <div class="ornament"><span>✦ 🌟 ✦</span></div>
+        <p id="guest-message">كل عام وأنتم بخير</p>
+        <p class="taqabal-allah">"جعلنا الله وإياكم من عواده، وتقبل الله منا ومنكم صالح الأعمال والعبادات وغفر لنا ولكم"</p>
+      </div>
+    </div>
+
+    <div id="reply-section">
+      <div class="ornament">
+        <span class="reply-title">اختر خلفية مبهجة لترد بها على محمد وتشاركه فرحة العيد</span>
+      </div>
+
+      <div class="grid-container">
+        <div class="bg-card" id="card-kaaba" onclick="selectBackground('kaaba')">
+          <div class="check-badge">✓</div>
+          <div class="preview-kaaba"></div>
+          <div class="card-footer"><p>خلفية الكعبة المشرفة</p></div>
+        </div>
+
+        <div class="bg-card" id="card-sheep" onclick="selectBackground('sheep')">
+          <div class="check-badge">✓</div>
+          <div class="preview-sheep"></div>
+          <div class="card-footer"><p>خلفية خروف العيد</p></div>
+        </div>
+
+        <div class="bg-card" id="card-islamic" onclick="selectBackground('islamic')">
+          <div class="check-badge">✓</div>
+          <div class="preview-islamic"></div>
+          <div class="card-footer"><p>خلفية إسلامية فاخرة</p></div>
+        </div>
+      </div>
+
+      <p id="selection-hint">👆 اختر بطاقة خلفية أولاً، ثم اضغط على أحد زري الرد أدناه</p>
+
+      <div class="buttons-flex">
+        <button onclick="replyViaWhatsApp()" class="btn-whatsapp">رد أنيق عبر الواتساب 🟢</button>
+        <button onclick="replyViaMessenger()" class="btn-messenger">رد أنيق عبر الماسنجر 🔵</button>
+      </div>
+    </div>
+
+    <button onclick="history.back()" class="btn-back">⬅️ العودة لتغيير الاسم أو الكود</button>
+  </section>
+
+  <footer class="main-footer">
+    كل عام وأنتم بخير • عيد أضحى مبارك ١٤٤٦ هـ
+  </footer>
+<div id="eid-info-container">
+  <p class="timer-title" id="timer-title-text">🎉 متبقٍ على انتهاء أيام العيد والتشريق:</p>
+  
+  <div class="eid-timer-digital">
+    <div class="time-box"><span id="eid-days">00</span><small>يوم</small></div>
+    <div class="time-box"><span id="eid-hours">00</span><small>ساعة</small></div>
+    <div class="time-box"><span id="eid-mins">00</span><small>دقيقة</small></div>
+    <div class="time-box"><span id="eid-secs">00</span><small>ثانية</small></div>
+  </div>
+  
+  <div class="prayer-reminder">
+    <span class="reminder-icon">🕌</span>
+    <p><strong>تذكير بالتكبير المقيَّد:</strong> لا تنسوا التكبير دبر الصلوات المفروضة، والذي بدأ من فجر يوم عرفة ويستمر حتى عصر يوم الثالث عشر (13) من ذي الحجة. تقبل الله منكم.</p>
+  </div>
+</div>
+
+<div id="audio-control" onclick="toggleAudio()">
+  <span id="audio-icon">🔊</span> <span id="audio-text">تشغيل تكبيرات العيد</span>
+  <audio id="eid-audio" loop preload="auto">
+    <source src="https://server11.mp3quran.net/bktr/001.mp3" type="audio/mp3">
+  </audio>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -141,4 +298,4 @@
   ⬅️ العودة للصفحةالرئسية
 </button>
 </body>
-</html>
+</html> -->

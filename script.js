@@ -4,8 +4,6 @@
 const WHATSAPP_NUMBER = "213659272335"; 
 const MESSENGER_LINK  = "https://www.messenger.com/t/mhmd.nafy.971323"; 
 
-
-
 /* ============================================================
    🗂️ DATABASE — قاعدة بيانات الأقارب بأكواد مبسطة وسهلة
 ============================================================ */
@@ -59,6 +57,7 @@ const guests = {
   "F02": { "name": "معتز" },
   "F03": { "name": "محسن" }
 };
+
 /* ============================================================
    📌 GLOBAL STATE — حالة الموقع الحالية
 ============================================================ */
@@ -67,7 +66,7 @@ var selectedBackground = null;
 var currentGuestName = "";
 var finalCustomMessage = ""; 
 
-/* 1. دالة التنقل بين التبويب العام والخاص مع التوسيط والتحكم بالـ Classes */
+/* 1. دالة التنقل بين التبويب العام والخاص */
 function switchTab(type) {
   loginType = type;
   var pubForm = document.getElementById("public-form");
@@ -97,7 +96,7 @@ function switchTab(type) {
   }
 }
 
-/* 2. الدالة الرئيسية لمعالجة الدخول لتوليد التهنئة المأثورة الخالية من التكرار */
+/* 2. الدالة الرئيسية لمعالجة الدخول وتوليد التهنئة الفاخرة */
 function processLogin() {
   var errorMsg = document.getElementById("error-msg");
   
@@ -114,8 +113,7 @@ function processLogin() {
     currentGuestName = guestName;
     document.getElementById("guest-name").textContent = "يا " + guestName + " العزيز";
     
-    // تهنئة مباركة وموزونة للعامة بأسلوب أهل السنة
-    finalCustomMessage = "كل عام وأنتم بخير وبألف صحة وعافية " + " بمناسبة عيد الأضحى المبارك 🌙✨\n\nأسأل الله العظيم أن يتقبّل منا ومنكم صالح الأعمال والعبادات، وأن يجعل أيامكم كلها مسرات وأفراح  .";
+    finalCustomMessage = "كل عام وأنتم بخير وبألف صحة وعافية بمناسبة عيد الأضحى المبارك 🌙✨\n\nأسأل الله العظيم أن يتقبّل منا ومنكم صالح الأعمال والعبادات، وأن يجعل أيامكم كلها مسرات وأفراح.";
 
   } else {
     var codeInput = document.getElementById("private-code-input");
@@ -136,17 +134,14 @@ function processLogin() {
       return;
     }
 
-    // هنا دمج الصفة النقية المصلحة مع اسم الضيف (مثال: الأم الغالية صونية) بدون أي تكرار
     var fullStyledName = selectedRelation + " / " + guest.name;
     currentGuestName = fullStyledName;
     
     document.getElementById("guest-name").textContent = "يا " + selectedRelation + " (" + guest.name + ")";
     
-    // تهنئة خاصة بليغة مستوحاة من مأثور السلف الصالح وعلماء أهل السنة
-    finalCustomMessage = "عيدكم مبارك وسعيد  " + "  🕋🐑\n\nتقبّل الله منا ومنكم صالح الأعمال، وغفر لنا ولكم، وجعلكم الله سبحانه وتعالى من عواده بالصحة والعافية والبركة والقبول، وحفظكم وسائر العائلة الكريمة من كل سوء.";
+    finalCustomMessage = "عيدكم مبارك وسعيد 🕋🐑\n\nتقبّل الله منا ومنكم صالح الأعمال، وغفر لنا ولكم، وجعلكم الله سبحانه وتعالى من عواده بالصحة والعافية والبركة والقبول، وحفظكم وسائر العائلة الكريمة من كل سوء.";
   }
 
-  // إخفاء لوحة الدخول وإظهار واجهة التهنئة الفخمة المضيئة
   errorMsg.style.display = "none";
   document.getElementById("login-section").style.display = "none";
   
@@ -154,15 +149,13 @@ function processLogin() {
   greetingSection.style.display = "block";
   document.getElementById("guest-message").textContent = finalCustomMessage;
 
-  // تأثير قصاصات زينة احتفالية (🎉) تطلق في الكونسول ومؤثر صعود بلمح البصر
   console.log("🎉 عيد مبارك سعيد وسنة مباركة للجميع! 🎉");
 
-  // التمرير التلقائي الانسيابي لبطاقة التهنئة المضيئة
   greetingSection.scrollIntoView({ behavior: "smooth", block: "start" });
   history.pushState({ page: "greeting" }, "");
 
-  /* أضف هذا السطر في نهاية دالة processLogin() */
-createConfetti(); // استدعاء دالة تناثر أوراق الحفل
+  // استدعاء دالة تناثر أوراق الحفل فور الدخول
+  createConfetti(); 
 }
 
 /* 3. دالة اختيار الخلفية */
@@ -178,9 +171,7 @@ function selectBackground(bg) {
   document.getElementById("selection-hint").textContent = "✅ اخترت بثقة: " + hints[bg];
 }
 
-
-
-/* 4. دالة الرد عبر الواتساب (كلام موزون ورزين بدون كلمة مبرمجنا) */
+/* 4. دالة الرد عبر الواتساب بدون تكرار الصفة */
 function replyViaWhatsApp() {
   if (!selectedBackground) { 
     alert("⚠️ يرجى اختيار خلفية أولاً!"); 
@@ -197,93 +188,16 @@ function replyViaWhatsApp() {
     }
   }
 
-  // صياغة موزونة ومؤدبة وجميلة جداً للأقارب والمجتمع تليق بمقامك
   var replyText = "مرحباً محمد نافي، أنا " + senderName + "، قمت باختيار " + icons[selectedBackground] + " للرد على تهنئتك الكريمة والطيبة بمناسبة العيد الأضحى السعيد. تقبل الله منا ومنكم صالح الأعمال، وكل عام وأنت بخير وعافية وسرور والتوفيق الدائم حليفك 🎉";
   var encodedText = encodeURIComponent(replyText);
   
   var isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-  var finalUrl = "";
-
-  if (isMobile) {
-    finalUrl = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodedText;
-  } else {
-    finalUrl = "https://web.whatsapp.com/send?phone=" + WHATSAPP_NUMBER + "&text=" + encodedText;
-  }
+  var finalUrl = isMobile ? "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodedText : "https://web.whatsapp.com/send?phone=" + WHATSAPP_NUMBER + "&text=" + encodedText;
   
   window.open(finalUrl, "_blank");
 }
 
-/* دالة تناثر أوراق الحفل (Confetti) المصححة والنقية */
-function createConfetti() {
-  const confettiCount = 100;
-  // تم إصلاح علامات الاقتباس هنا لكل الألوان برمجياً
-  const confettiColors = ['#f5d98b', '#c9a227', '#fdf6e3', '#ebdcb9'];
-  const confettiParent = document.getElementById('greeting-section');
-
-  for (let i = 0; i < confettiCount; i++) {
-    const confetti = document.createElement('div');
-    confetti.classList.add('confetti');
-    
-    // موقع العرض العشوائي والألوان
-    confetti.style.left = Math.random() * 100 + '%';
-    confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-    
-    // أحجام عشوائية للأوراق لإعطاء عمق بصري
-    const size = Math.random() * 8 + 6;
-    confetti.style.width = size + 'px';
-    confetti.style.height = size + 'px';
-    
-    // توقيت عشوائي لكل ورقة لكي لا تسقط كلها في نفس اللحظة
-    confetti.style.animationDelay = Math.random() * 2 + 's';
-    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-
-    confettiParent.appendChild(confetti);
-
-    // تنظيف المتصفح وحذف الأوراق بعد انتهاء سقوطها تلقائياً
-    setTimeout(() => {
-      confetti.remove();
-    }, 5000);
-  }
-}
-
-
-/* 5. دالة الرد عبر الماسنجر (كلام موزون ورزين بدون كلمة مبرمجنا) */
-
-    // /* 4. دالة الرد عبر الواتساب (تعديل: إرسال اسم الشخص النقي بدون صلة القرابة) */
-    // function replyViaWhatsApp() {
-    //   if (!selectedBackground) { 
-    //     alert("⚠️ يرجى اختيار خلفية أولاً!"); 
-    //     return; 
-    //   }
-      
-    //   const icons = { kaaba: "🕋", sheep: "🐑", islamic: "☪️" };
-      
-    //   // هنا نقوم بتنظيف الاسم: إذا كان الدخول خاصاً، نأخذ الاسم النقي فقط من الخانة ونترك الصفة
-    //   let senderName = currentGuestName;
-    //   if (loginType === "private") {
-    //     const code = document.getElementById("private-code-input").value.trim().toUpperCase();
-    //     if (guests[code]) {
-    //       senderName = guests[code].name; // جلب الاسم فقط (مثل: إبراهيم) دون صلة القرابة
-    //     }
-    //   }
-
-    //   // بناء نص الجواب الموجه لك باسم الشخص فقط
-    //   const replyText = "مرحباً محمد نافي، أنا " + senderName + " قمت باختيار " + icons[selectedBackground] + " للرد على تهنئتك الجميلة! كل عام وأنت بخير ونجاح مبرمجنا الغالي 🎉";
-    //   const encodedText = encodeURIComponent(replyText);
-      
-    //   const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-    //   let finalUrl = "";
-
-    //   if (isMobile) {
-    //     finalUrl = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodedText;
-    //   } else {
-    //     finalUrl = "https://web.whatsapp.com/send?phone=" + WHATSAPP_NUMBER + "&text=" + encodedText;
-    //   }
-      
-    //   window.open(finalUrl, "_blank");
-    // }
-
-/* 5. دالة الرد عبر الماسنجر (كلام موزون ورزين بدون كلمة مبرمجنا) */
+/* 5. دالة الرد عبر الماسنجر */
 function replyViaMessenger() {
   if (!selectedBackground) { 
     alert("⚠️ يرجى اختيار خلفية أولاً!"); 
@@ -309,43 +223,64 @@ function replyViaMessenger() {
   window.open(MESSENGER_LINK, "_blank");
 }
 
-/* الاستماع لزر الرجوع في الهاتف لإعادة إظهار واجهة الدخول المشرقة الفاتحة */
-window.addEventListener("popstate", function(event) {
-  document.getElementById("login-section").style.display = "block";
-  document.getElementById("greeting-section").style.display = "none";
-  
-  if(document.getElementById("public-name-input")) document.getElementById("public-name-input").value = "";
-  if(document.getElementById("private-code-input")) document.getElementById("private-code-input").value = "";
-});
+/* 6. دالة تناثر أوراق الحفل (Confetti) المصححة والنقية */
+function createConfetti() {
+  const confettiCount = 100;
+  const confettiColors = ['#f5d98b', '#c9a227', '#fdf6e3', '#ebdcb9'];
+  const confettiParent = document.getElementById('greeting-section');
 
-// تعريف ملف الصوت عالمياً في الكود
-const audioTrack = new Audio("https://example.com/path-to-your-eid-audio.mp3"); // استبدل الرابط برابط ملف التكبيرات الخاص بك
-audioTrack.loop = true; // جعل الصوت يتكرر تلقائياً
+  if (!confettiParent) return;
 
-// دالة تشغيل التكبيرات والتحكم بها عبر الزر
-function toggleEidAudio() {
-  const audioBtn = document.getElementById("play-audio-btn"); // تأكد أن ID الزر في ملف HTML مطابق لهذا
-  
-  if (audioTrack.paused) {
-    audioTrack.play()
-      .then(() => {
-        if (audioBtn) audioBtn.textContent = "⏸️ إيقاف التكبيرات";
-      })
-      .catch((error) => {
-        console.error("فشل تشغيل الصوت بسبب قيود المتصفح:", error);
-        alert("الرجاء الضغط على أي مكان في الشاشة ثم محاولة تشغيل الصوت مجدداً.");
-      });
-  } else {
-    audioTrack.pause();
-    if (audioBtn) audioBtn.textContent = "▶️ تشغيل تكبيرات العيد";
+  for (let i = 0; i < confettiCount; i++) {
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    
+    confetti.style.left = Math.random() * 100 + '%';
+    confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+    
+    const size = Math.random() * 8 + 6;
+    confetti.style.width = size + 'px';
+    confetti.style.height = size + 'px';
+    
+    confetti.style.animationDelay = Math.random() * 2 + 's';
+    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+
+    confettiParent.appendChild(confetti);
+
+    setTimeout(() => {
+      confetti.remove();
+    }, 5000);
   }
 }
 
-// دالة العداد التنازلي التلقائي لأيام العيد 2026
+/* 7. دالة التحكم الموحدة والأكيدة في تشغيل وإيقاف الصوت بالزر الجديد */
+function toggleAudio() {
+  const audio = document.getElementById("eid-audio");
+  const icon = document.getElementById("audio-icon");
+  const text = document.getElementById("audio-text");
+  
+  if (!audio) return;
+
+  if (audio.paused) {
+    audio.play()
+      .then(() => {
+        if (icon) icon.textContent = "⏸️";
+        if (text) text.textContent = "إيقاف التكبيرات";
+      })
+      .catch(err => {
+        console.log("خطأ أو قيود في تشغيل الصوت التلقائي:", err);
+      });
+  } else {
+    audio.pause();
+    if (icon) icon.textContent = "🔊";
+    if (text) text.textContent = "تشغيل تكبيرات العيد";
+  }
+}
+
+/* 8. دالة العداد التنازلي التلقائي لأيام العيد 2026 الحي */
 function initEidCountdown() {
-  // ضبط التواريخ لعام 2026 بدقة (العيد يبدأ 27 مايو)
   const eidStartDate = new Date("May 27, 2026 00:00:00").getTime(); 
-  const eidEndDate = new Date("May 30, 2026 18:00:00").getTime(); // نهاية العيد وأيام التشريق عصر 13 ذي الحجة
+  const eidEndDate = new Date("May 30, 2026 18:00:00").getTime(); 
 
   const titleText = document.getElementById("timer-title-text");
   if (!titleText) return;
@@ -355,15 +290,12 @@ function initEidCountdown() {
     let distance = 0;
 
     if (now < eidStartDate) {
-      // قبل العيد
       titleText.textContent = "⏳ متبقٍ على حلول صبيحة عيد الأضحى المبارك:";
       distance = eidStartDate - now;
     } else if (now >= eidStartDate && now <= eidEndDate) {
-      // نحن الآن داخل أيام العيد (27، 28، 29، 30 مايو)
-      titleText.textContent = "🎉 تقبل الله طاعتكم! نحن الآن في أيام التشريق.. متبقٍ على انتهاء التكبير:";
+      titleText.textContent = "🎉 تقبل الله طاعتكم! نحن الآن في أيام العيد والتشريق.. متبقٍ على انتهاء التكبير:";
       distance = eidEndDate - now;
     } else {
-      // بعد انتهاء أيام العيد والتشريق
       titleText.textContent = "✨ عساكم من عواده.. تقبل الله منا ومنكم صالح الأعمال.";
       const digitalTimer = document.querySelector(".eid-timer-digital");
       const reminderBox = document.querySelector(".prayer-reminder");
@@ -373,13 +305,11 @@ function initEidCountdown() {
       return;
     }
 
-    // حساب الوقت الرقمي
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // تحديث الأرقام في واجهة الموقع
     const daysElem = document.getElementById("eid-days");
     const hoursElem = document.getElementById("eid-hours");
     const minsElem = document.getElementById("eid-mins");
@@ -395,256 +325,20 @@ function initEidCountdown() {
   const intervalInstance = setInterval(updateTimer, 1000);
 }
 
-// ربط الدوال عند تحميل الصفحة بالكامل
+/* 9. ربط حدث استرجاع الصفحات في شاشة الهاتف والـ Back Button */
+window.addEventListener("popstate", function(event) {
+  document.getElementById("login-section").style.display = "block";
+  document.getElementById("greeting-section").style.display = "none";
+  if(document.getElementById("public-name-input")) document.getElementById("public-name-input").value = "";
+  if(document.getElementById("private-code-input")) document.getElementById("private-code-input").value = "";
+});
+
+/* 10. تشغيل العداد وربط حدث ضغط الزر النظيف فور تحميل المستند */
 document.addEventListener("DOMContentLoaded", () => {
   initEidCountdown();
 
-  // ربط زر تشغيل الصوت بالدالة البرمجية لمنع الحظر
-  const playButton = document.getElementById("play-audio-btn"); // تأكد من مطابقة الـ ID للزر أسفل واجهتك
+  const playButton = document.getElementById("play-audio-btn");
   if (playButton) {
-    playButton.addEventListener("click", toggleEidAudio);
+    playButton.addEventListener("click", toggleAudio);
   }
 });
-
-
-
-// /* ============================================================
-//        ⚙️ CONFIGURATION — إعداد المتغيرات الثابتة للأزرار الشغالة
-//     ============================================================ */
-//     const WHATSAPP_NUMBER = "213659272335"; // ضع رقمك الحقيقي هنا
-//     const MESSENGER_LINK  = "https://www.messenger.com/t/mhmd.nafy.971323"; // رابط دردشتك المباشر المستقر
-
-//     /* ============================================================
-//        🗂️ DATABASE — قاعدة بيانات الأقارب والأكواد الخاصة
-//     ============================================================ */
-//     const guests = {
-    
-//   "A1B2C3D4": { "name": "محمد" },
-//   "E5F6G7H8": { "name": "صونية" },
-//   "I9J0K1L2": { "name": "فاطمة" },
-//   "M3N4O5P6": { "name": "علي" },
-//   "Q7R8S9T0": { "name": "عائشة" },
-//   "U1V2W3X4": { "name": "عمر" },
-//   "Y5Z6A7B8": { "name": "زينب" },
-//   "C9D0E1F2": { "name": "يوسف" },
-//   "G3H4I5J6": { "name": "مريم" },
-//   "K7L8M9N0": { "name": "خالد" },
-//   "O1P2Q3R4": { "name": "سارة" },
-//   "S5T6U7V8": { "name": "عبد الله" },
-//   "W9X0Y1Z2": { "name": "نور" },
-//   "A3B4C5D6": { "name": "حمزة" },
-//   "E7F8G9H0": { "name": "ليان" },
-//   "I1J2K3L4": { "name": "إبراهيم" },
-//   "M5N6O7P8": { "name": "رنا" },
-//   "Q9R0S1T2": { "name": "حسن" },
-//   "U3V4W5X6": { "name": "ريم" },
-//   "Y7Z8A9B0": { "name": "مصطفى" },
-//   "C1D2E3F4": { "name": "هنا" },
-//   "G5H6I7J8": { "name": "طارق" },
-//   "K9L0M1N2": { "name": "جنى" },
-//   "O3P4Q5R6": { "name": "زياد" },
-//   "S7T8U9V0": { "name": "آية" },
-//   "W1X2Y3Z4": { "name": "كريم" },
-//   "A5B6C7D8": { "name": "ندى" },
-//   "E9F0G1H2": { "name": "سلطان" },
-//   "I3J4K5L6": { "name": "حلا" },
-//   "M7N8O9P0": { "name": "ياسين" }
-
-//     };
-
-//     /* ============================================================
-//        📌 GLOBAL STATE — حالة الموقع الحالية
-//     ============================================================ */
-//     let loginType = "public"; // يمكن أن يكون public أو private
-//     let selectedBackground = null;
-//     let currentGuestName = "";
-//     let finalCustomMessage = ""; // لتخزين النص المولد نهائياً وإرساله للواتساب والماسنجر
-
-//     /* 1. دالة التنقل بين التبويب العام والخاص */
-//     function switchTab(type) {
-//       loginType = type;
-//       const pubForm = document.getElementById("public-form");
-//       const privForm = document.getElementById("private-form");
-//       const tabPub = document.getElementById("tab-public");
-//       const tabPriv = document.getElementById("tab-private");
-//       const errorMsg = document.getElementById("error-msg");
-      
-//       errorMsg.style.display = "none";
-
-//       if (type === "public") {
-//         pubForm.style.display = "block";
-//         privForm.style.display = "none";
-//         // تنسيق الأزرار النشطة
-//         tabPub.style.background = "linear-gradient(135deg, #f5d98b, #c9a227)";
-//         tabPub.style.color = "#07351f";
-//         tabPriv.style.background = "rgba(255,255,255,0.1)";
-//         tabPriv.style.color = "#fdf6e3";
-//       } else {
-//         pubForm.style.display = "none";
-//         privForm.style.display = "block";
-//         // تنسيق الأزرار النشطة
-//         tabPriv.style.background = "linear-gradient(135deg, #f5d98b, #c9a227)";
-//         tabPriv.style.color = "#07351f";
-//         tabPub.style.background = "rgba(255,255,255,0.1)";
-//         tabPub.style.color = "#fdf6e3";
-//       }
-//     }
-
-//     /* 2. الدالة الرئيسية لمعالجة الدخول للنوعين وتوليد التهنئة المدمجة */
-//     function processLogin() {
-//       const errorMsg = document.getElementById("error-msg");
-      
-//       if (loginType === "public") {
-//         // --- معالجة الدخول العام بالاسم ---
-//         const nameInput = document.getElementById("public-name-input");
-//         const guestName = nameInput.value.trim();
-
-//         if (guestName === "") {
-//           errorMsg.textContent = "⚠️ يرجى كتابة اسمك أولاً لعرض التهنئة";
-//           errorMsg.style.display = "block";
-//           return;
-//         }
-
-//         currentGuestName = guestName;
-//         document.getElementById("guest-name").textContent = "يا " + guestName + " الكريم";
-        
-//         finalCustomMessage = "كل عام وأنتم بخير وبألف صحة وعافية يا " + guestName + " بمناسبة عيد الأضحى المبارك 🌙✨\nأسأل الله أن يتقبّل منا ومنكم صالح الأعمال، وأن يجعل أيامكم كلها أفراحاً ومسرات.";
-
-//       } else {
-//         // --- معالجة الدخول الخاص للأقارب بالأكواد والصفة ---
-//         const codeInput = document.getElementById("private-code-input");
-//         const code = codeInput.value.trim().toUpperCase();
-//         const relationSelect = document.getElementById("relation-select");
-//         const selectedRelation = relationSelect.value;
-//         const guest = guests[code];
-
-//         if (!guest) {
-//           errorMsg.textContent = "⚠️ الكود السرّي غير صحيح، يرجى التحقق منه!";
-//           errorMsg.style.display = "block";
-//           return;
-//         }
-
-//         if (!selectedRelation) {
-//           errorMsg.textContent = "⚠️ يرجى تحديد صلة القرابة لتخصيص التهنئة!";
-//           errorMsg.style.display = "block";
-//           return;
-//         }
-
-//         // دمج الصفة مع الاسم برمجياً في الوقت نفسه (مثال: أخي إبراهيم)
-//         const fullStyledName = selectedRelation + " " + guest.name;
-//         currentGuestName = fullStyledName;
-        
-//         document.getElementById("guest-name").textContent = "يا " + fullStyledName + " ";
-        
-//         finalCustomMessage = "عيدك مبارك وسعيد يا " + fullStyledName + " 🕋🐑\nتقبّل الله منا ومنكم صالح الأعمال، وجعلكم من عواده بالصحة والعافية والبركة وس سائر أفراد العائلة الكريمة.";
-//       }
-
-//       // إخفاء لوحة الدخول وإظهار واجهة التهنئة المخصصة
-//       errorMsg.style.display = "none";
-//       document.getElementById("login-section").style.display = "none";
-//       document.getElementById("greeting-section").style.display = "block";
-//       document.getElementById("guest-message").textContent = finalCustomMessage;
-//       // أضف هذا السطر في نهاية دالة processLogin قبل قوس الإغلاق مباشرة
-//       document.getElementById("greeting-section").scrollIntoView({ behavior: "smooth", block: "start" });
-//       // أضف هذا السطر قبل سطر التمرير (Scroll) في نهاية دالة processLogin
-//       history.pushState({ page: "greeting" }, "");
-//     }
-
-//     /* 3. دالة اختيار الخلفية */
-//     function selectBackground(bg) {
-//       selectedBackground = bg;
-//       const cards = document.getElementsByClassName("bg-card");
-//       for (let i = 0; i < cards.length; i++) {
-//         cards[i].classList.remove("selected");
-//       }
-//       document.getElementById("card-" + bg).classList.add("selected");
-      
-//       const hints = { kaaba: "🕋 خلفية الكعبة المشرفة", sheep: "🐑 خلفية خروف العيد", islamic: "☪️ خلفية إسلامية فاخرة" };
-//       document.getElementById("selection-hint").textContent = "✅ اخترت: " + hints[bg];
-//     }
-
-//     /* 4. دالة الرد عبر الواتساب (تعديل: إرسال اسم الشخص النقي بدون صلة القرابة) */
-//     function replyViaWhatsApp() {
-//       if (!selectedBackground) { 
-//         alert("⚠️ يرجى اختيار خلفية أولاً!"); 
-//         return; 
-//       }
-      
-//       const icons = { kaaba: "🕋", sheep: "🐑", islamic: "☪️" };
-      
-//       // هنا نقوم بتنظيف الاسم: إذا كان الدخول خاصاً، نأخذ الاسم النقي فقط من الخانة ونترك الصفة
-//       let senderName = currentGuestName;
-//       if (loginType === "private") {
-//         const code = document.getElementById("private-code-input").value.trim().toUpperCase();
-//         if (guests[code]) {
-//           senderName = guests[code].name; // جلب الاسم فقط (مثل: إبراهيم) دون صلة القرابة
-//         }
-//       }
-
-//       // بناء نص الجواب الموجه لك باسم الشخص فقط
-//       const replyText = "مرحباً محمد نافي، أنا " + senderName + " قمت باختيار " + icons[selectedBackground] + " للرد على تهنئتك الجميلة! كل عام وأنت بخير ونجاح مبرمجنا الغالي 🎉";
-//       const encodedText = encodeURIComponent(replyText);
-      
-//       const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-//       let finalUrl = "";
-
-//       if (isMobile) {
-//         finalUrl = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodedText;
-//       } else {
-//         finalUrl = "https://web.whatsapp.com/send?phone=" + WHATSAPP_NUMBER + "&text=" + encodedText;
-//       }
-      
-//       window.open(finalUrl, "_blank");
-//     }
-
-//     /* 5. دالة الرد عبر الماسنجر (تعديل: إرسال اسم الشخص النقي بدون صلة القرابة) */
-//     function replyViaMessenger() {
-//       if (!selectedBackground) { 
-//         alert("⚠️ يرجى اختيار خلفية أولاً!"); 
-//         return; 
-//       }
-      
-//       const icons = { kaaba: "🕋", sheep: "🐑", islamic: "☪️" };
-      
-//       // تنظيف الاسم وجلب الاسم النقي للأقارب أيضاً هنا
-//       let senderName = currentGuestName;
-//       if (loginType === "private") {
-//         const code = document.getElementById("private-code-input").value.trim().toUpperCase();
-//         if (guests[code]) {
-//           senderName = guests[code].name;
-//         }
-//       }
-
-//       const replyText = "مرحباً محمد نافي، أنا " + senderName + " قمت باختيار " + icons[selectedBackground] + " للرد على تهنئتك الجميلة! كل عام وأنت بخير ونجاح مبرمجنا الغالي 🎉";
-      
-//       // نسخ نص الرد النظيف تلقائياً في حافظة هاتف الزائر
-//       navigator.clipboard.writeText(replyText)
-//         .then(() => console.log("تم نسخ نص الرد بنجاح!"))
-//         .catch(err => console.error("فشل النسخ: ", err));
-      
-//       // فتح رابط محادثتك المباشر المستقر
-//       window.open(MESSENGER_LINK, "_blank");
-//     }
-
-
-// // الاستماع لزر الرجوع في الهاتف لإعادة إظهار واجهة الدخول
-// window.addEventListener("popstate", function(event) {
-//   // إعادة إظهار لوحة الدخول وإخفاء التهنئة
-//   document.getElementById("login-section").style.display = "block";
-//   document.getElementById("greeting-section").style.display = "none";
-  
-//   // تصفير الحقول لراحة المستخدم
-//   if(document.getElementById("public-name-input")) document.getElementById("public-name-input").value = "";
-//   if(document.getElementById("private-code-input")) document.getElementById("private-code-input").value = "";
-// });
-
-
-
-
-
-
-
-
-
-
-

@@ -139,13 +139,14 @@
   </div>
 </div>
 
-<div id="audio-control" onclick="toggleAudio()">
-  <span id="audio-icon">🔊</span> <span id="audio-text">تشغيل تكبيرات العيد</span>
+<div id="audio-control-wrapper">
+  <button id="play-audio-btn" class="audio-button">
+    <span id="audio-icon">🔊</span> <span id="audio-text">تشغيل تكبيرات العيد</span>
+  </button>
   <audio id="eid-audio" loop preload="auto">
     <source src="https://server11.mp3quran.net/bktr/001.mp3" type="audio/mp3">
   </audio>
 </div>
-
   <script src="script.js"></script>
 </body>
 </html>

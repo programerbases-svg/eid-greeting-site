@@ -318,84 +318,93 @@ window.addEventListener("popstate", function(event) {
   if(document.getElementById("private-code-input")) document.getElementById("private-code-input").value = "";
 });
 
-// 1. دالة التحكم في صوت التكبيرات مع معالجة قيود المتصفح
-function toggleAudio() {
-  const audio = document.getElementById("eid-audio");
-  const icon = document.getElementById("audio-icon");
-  const text = document.getElementById("audio-text");
+// تعريف ملف الصوت عالمياً في الكود
+const audioTrack = new Audio("https://example.com/path-to-your-eid-audio.mp3"); // استبدل الرابط برابط ملف التكبيرات الخاص بك
+audioTrack.loop = true; // جعل الصوت يتكرر تلقائياً
+
+// دالة تشغيل التكبيرات والتحكم بها عبر الزر
+function toggleEidAudio() {
+  const audioBtn = document.getElementById("play-audio-btn"); // تأكد أن ID الزر في ملف HTML مطابق لهذا
   
-  if (audio.paused) {
-    audio.play()
+  if (audioTrack.paused) {
+    audioTrack.play()
       .then(() => {
-        icon.textContent = "⏸️";
-        text.textContent = "إيقاف التكبيرات";
+        if (audioBtn) audioBtn.textContent = "⏸️ إيقاف التكبيرات";
       })
-      .catch(err => {
-        alert("الرجاء التفاعل مع الصفحة أولاً ليسمح المتصفح بتشغيل الصوت!");
-        console.log("خطأ في التشغيل:", err);
+      .catch((error) => {
+        console.error("فشل تشغيل الصوت بسبب قيود المتصفح:", error);
+        alert("الرجاء الضغط على أي مكان في الشاشة ثم محاولة تشغيل الصوت مجدداً.");
       });
   } else {
-    audio.pause();
-    icon.textContent = "🔊";
-    text.textContent = "تشغيل تكبيرات العيد";
+    audioTrack.pause();
+    if (audioBtn) audioBtn.textContent = "▶️ تشغيل تكبيرات العيد";
   }
 }
 
-// 2. دالة تشغيل العداد الرقمي الحي لأيام العيد الثلاثة لعام 2026
+// دالة العداد التنازلي التلقائي لأيام العيد 2026
 function initEidCountdown() {
-  const targetDate = new Date("May 31, 2026 18:00:00").getTime(); // نهاية العيد (عصر 13 ذي الحجة)
-  const startDate = new Date("May 28, 2026 00:00:00").getTime();  // بداية أول أيام العيد
+  // ضبط التواريخ لعام 2026 بدقة (العيد يبدأ 27 مايو)
+  const eidStartDate = new Date("May 27, 2026 00:00:00").getTime(); 
+  const eidEndDate = new Date("May 30, 2026 18:00:00").getTime(); // نهاية العيد وأيام التشريق عصر 13 ذي الحجة
 
-  const timerContainer = document.getElementById("eid-info-container");
-  if (!timerContainer) return;
+  const titleText = document.getElementById("timer-title-text");
+  if (!titleText) return;
 
   function updateTimer() {
     const now = new Date().getTime();
-    const titleText = document.getElementById("timer-title-text");
+    let distance = 0;
 
-    if (now < startDate) {
-      // قبل العيد (يوم عرفة)
-      if(titleText) titleText.textContent = "⏳ ساعات قليلة تفصلنا عن بهجة العيد... كل عام وأنتم بخير!";
-      document.getElementById("eid-days").textContent = "00";
-      document.getElementById("eid-hours").textContent = "00";
-      document.getElementById("eid-mins").textContent = "00";
-      document.getElementById("eid-secs").textContent = "00";
+    if (now < eidStartDate) {
+      // قبل العيد
+      titleText.textContent = "⏳ متبقٍ على حلول صبيحة عيد الأضحى المبارك:";
+      distance = eidStartDate - now;
+    } else if (now >= eidStartDate && now <= eidEndDate) {
+      // نحن الآن داخل أيام العيد (27، 28، 29، 30 مايو)
+      titleText.textContent = "🎉 تقبل الله طاعتكم! نحن الآن في أيام التشريق.. متبقٍ على انتهاء التكبير:";
+      distance = eidEndDate - now;
+    } else {
+      // بعد انتهاء أيام العيد والتشريق
+      titleText.textContent = "✨ عساكم من عواده.. تقبل الله منا ومنكم صالح الأعمال.";
+      const digitalTimer = document.querySelector(".eid-timer-digital");
+      const reminderBox = document.querySelector(".prayer-reminder");
+      if (digitalTimer) digitalTimer.style.display = "none";
+      if (reminderBox) reminderBox.style.display = "none";
+      clearInterval(intervalInstance);
       return;
     }
 
-    const distance = targetDate - now;
-
-    if (distance < 0) {
-      // بعد انتهاء العيد
-      if(titleText) titleText.textContent = "✨ عساكم من عواده.. تقبل الله منا ومنكم صالح الأعمال.";
-      document.querySelector(".eid-timer-digital").style.display = "none";
-      document.querySelector(".prayer-reminder").style.display = "none";
-      clearInterval(intervalInterval);
-      return;
-    }
-
-    // حساب الأيام، الساعات، الدقائق والثواني
+    // حساب الوقت الرقمي
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // عرض الأرقام في الخانات مع إضافة صفر إذا كان الرقم أقل من 10
-    document.getElementById("eid-days").textContent = days < 10 ? "0" + days : days;
-    document.getElementById("eid-hours").textContent = hours < 10 ? "0" + hours : hours;
-    document.getElementById("eid-mins").textContent = minutes < 10 ? "0" + minutes : minutes;
-    document.getElementById("eid-secs").textContent = seconds < 10 ? "0" + seconds : seconds;
+    // تحديث الأرقام في واجهة الموقع
+    const daysElem = document.getElementById("eid-days");
+    const hoursElem = document.getElementById("eid-hours");
+    const minsElem = document.getElementById("eid-mins");
+    const secsElem = document.getElementById("eid-secs");
+
+    if (daysElem) daysElem.textContent = days < 10 ? "0" + days : days;
+    if (hoursElem) hoursElem.textContent = hours < 10 ? "0" + hours : hours;
+    if (minsElem) minsElem.textContent = minutes < 10 ? "0" + minutes : minutes;
+    if (secsElem) secsElem.textContent = seconds < 10 ? "0" + seconds : seconds;
   }
 
   updateTimer();
-  const intervalInterval = setInterval(updateTimer, 1000);
+  const intervalInstance = setInterval(updateTimer, 1000);
 }
 
-// التأكد من تشغيل العداد بعد تحميل واجهة الـ HTML بالكامل لضمان ظهوره في الـ VC
+// ربط الدوال عند تحميل الصفحة بالكامل
 document.addEventListener("DOMContentLoaded", () => {
   initEidCountdown();
-});
 
+  // ربط زر تشغيل الصوت بالدالة البرمجية لمنع الحظر
+  const playButton = document.getElementById("play-audio-btn"); // تأكد من مطابقة الـ ID للزر أسفل واجهتك
+  if (playButton) {
+    playButton.addEventListener("click", toggleEidAudio);
+  }
+});
 
 
 

@@ -564,3 +564,28 @@ body {
   color: #777;
   font-family: 'Amiri', serif;
 }
+
+#audio-control-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.audio-button {
+  background: white;
+  border: 2px solid #c9a227;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: #8c6200;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  font-family: 'Amiri', serif;
+}
+
+.audio-button:hover {
+  transform: scale(1.05);
+  background: #fdfbf7;
+  box-shadow: 0 6px 15px rgba(201, 162, 39, 0.2);
+}

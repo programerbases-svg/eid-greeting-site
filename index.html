@@ -132,6 +132,15 @@
     <div class="time-box"><span id="eid-mins">00</span><small>دقيقة</small></div>
     <div class="time-box"><span id="eid-secs">00</span><small>ثانية</small></div>
   </div>
+  <div class="interactive-eid-box">
+  <p class="interactive-title">✨ شاركنا بهجة العيد في بيت محمد نافي:</p>
+  <div class="interactive-buttons">
+    <button onclick="triggerGreetingAction('gift')">🎁 افتح عيديتك</button>
+    <button onclick="triggerGreetingAction('coffee')">☕ تقهوى معنا</button>
+    <button onclick="triggerGreetingAction('oud')">🪵 طيّب خاطرك</button>
+  </div>
+  <div id="interactive-result-text" class="eid-popup-text hidden"></div>
+</div>
   
   <div class="prayer-reminder">
     <span class="reminder-icon">🕌</span>
@@ -139,15 +148,7 @@
   </div>
 </div>
 
-<div id="audio-control-wrapper">
-  <button id="play-audio-btn" class="audio-button">
-    <span id="audio-icon">🔊</span> <span id="audio-text">تشغيل تكبيرات العيد</span>
-  </button>
-  <audio id="eid-audio" loop preload="auto">
-    <source src="https://server11.mp3quran.net/bktr/001.mp3" type="audio/mp3">
-  </audio>
-</div>
-  <script src="script.js"></script>
+</div>  <script src="script.js"></script>
 </body>
 </html>
 

@@ -135,7 +135,7 @@ function processLogin() {
     }
 
     var fullStyledName = selectedRelation + " / " + guest.name;
-    currentGuestName = fullStyledName;
+    currentGuestName = guest.name; // حفظ الاسم الصافي بدون اللقب للعلب التفاعلية
     
     document.getElementById("guest-name").textContent = "يا " + selectedRelation + " (" + guest.name + ")";
     
@@ -154,6 +154,7 @@ function processLogin() {
   greetingSection.scrollIntoView({ behavior: "smooth", block: "start" });
   history.pushState({ page: "greeting" }, "");
 
+  // استدعاء دالة تناثر أوراق الحفل فور الدخول
   createConfetti(); 
 }
 
@@ -222,7 +223,7 @@ function replyViaMessenger() {
   window.open(MESSENGER_LINK, "_blank");
 }
 
-/* 6. دالة تناثر أوراق الحفل (Confetti) */
+/* 6. دالة تناثر أوراق الحفل (Confetti) المصححة والنقية */
 function createConfetti() {
   const confettiCount = 100;
   const confettiColors = ['#f5d98b', '#c9a227', '#fdf6e3', '#ebdcb9'];
@@ -251,32 +252,38 @@ function createConfetti() {
     }, 5000);
   }
 }
+/* ============================================================
+   7. دالة صندوق المعايدة التفاعلي — أحاديث نبوية صحيحة وتوجيهات شرعية
+============================================================ */
+function triggerGreetingAction(type) {
+  const resultBox = document.getElementById("interactive-result-text");
+  if (!resultBox) return;
 
-/* 7. دالة التحكم الموحدة لتشغيل وإيقاف الصوت بسلاسة وثقة */
-function toggleAudio() {
-  const audio = document.getElementById("eid-audio");
-  const icon = document.getElementById("audio-icon");
-  const text = document.getElementById("audio-text");
-  
-  if (!audio) return;
+  const displayName = currentGuestName || " ";
+  let message = "";
 
-  if (audio.paused) {
-    audio.play()
-      .then(() => {
-        if (icon) icon.textContent = "⏸️";
-        if (text) text.textContent = "إيقاف التكبيرات";
-      })
-      .catch(err => {
-        console.log("المتصفح يمنع تشغيل السيرفر الخارجي تلقائياً:", err);
-      });
-  } else {
-    audio.pause();
-    if (icon) icon.textContent = "🔊";
-    if (text) text.textContent = "تشغيل تكبيرات العيد";
+  if (type === 'gift') {
+    const propheticHadiths = [
+      `💡 عن سُنّة يوم النحر  ${displayName}، رُوي عن رسول الله ﷺ أنه قال: «إِنَّ أَوَّلَ مَا نَبْدَأُ بِهِ فِي يَوْمِنَا هَذَا أَنْ نُصَلِّيَ، ثُمَّ نَرْجِعَ فَنَنْحَرَ، فَمَنْ فَعَلَ ذَلِكَ فَقَدْ أَصَابَ سُنَّتَنَا» [رواه البخاري ومسلم].`,
+      `🕌 عن آداب وخلف الطرقات  ${displayName}، رُوي عن جابر بن عبد الله رضي الله عنهما قال: «كَانَ النَّبِيُّ ﷺ إِذَا كَانَ يَوْمُ عِيدٍ خَالَفَ الطَّرِيقَ» [رواه البخاري].`,
+      `🕊️ عن فضل أيام العيد والتوسعة فيه  ${displayName}، قال رسول الله ﷺ: «أَيَّامُ التَّشْرِيقِ أَيَّامُ أَكْلٍ وَشُرْبٍ وَذِكْرٍ لِلَّهِ» [رواه مسلم].`
+    ];
+    message = propheticHadiths[Math.floor(Math.random() * propheticHadiths.length)];
+    
+    // إطلاق أوراق الاحتفال لزيادة التفاعل البصري عند عرض الحديث الشريف
+    createConfetti();
+    
+  } else if (type === 'coffee') {
+    message = `☕ حياك الله  ${displayName}، وتذكيراً بفضل صلة الرحم في المجالس، قال رسول الله ﷺ: «مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَصِلْ رَحِمَهُ» [رواه البخاري ومسلم].`;
+  } else if (type === 'oud') {
+    message = `🪵 طاب ممشاك  ${displayName}، وفي استحباب الطيب والجمال يوم العيد، رُوي عن رسول الله ﷺ أنه قال: «إِنَّ اللَّهَ جَمِيلٌ يُحِبُّ الْجَمَالَ» [رواه مسلم].`;
   }
-}
 
-/* 8. دالة العداد التنازلي التلقائي الحي لعام 2026 */
+  // عرض النص وإزالة خاصية الإخفاء
+  resultBox.textContent = message;
+  resultBox.classList.remove("hidden");
+}
+/* 8. دالة العداد التنازلي التلقائي لأيام العيد 2026 الحي */
 function initEidCountdown() {
   const eidStartDate = new Date("May 27, 2026 00:00:00").getTime(); 
   const eidEndDate = new Date("May 30, 2026 18:00:00").getTime(); 
@@ -332,7 +339,7 @@ window.addEventListener("popstate", function(event) {
   if(document.getElementById("private-code-input")) document.getElementById("private-code-input").value = "";
 });
 
-/* 10. تشغيل العداد عند تحميل الصفحة (وإزالة تعارض الأزرار) */
+/* 10. تشغيل العداد فور تحميل المستند */
 document.addEventListener("DOMContentLoaded", () => {
   initEidCountdown();
 });
